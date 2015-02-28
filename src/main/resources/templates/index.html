@@ -7,9 +7,11 @@
 <body>
   <p>Hello Spring Boot in Scala!</p>
   <p>Viewable as simple html and via appserver</p>
-  <p>Street:
-    <span data-th-text="${street.name}">Teststreet</span>
-    <span data-th-text="${street.number}" data-any="any-data-field">123 b</span>
-  </p>
+  <ul data-th-each="street : ${streets}">
+    <li>Street:
+      <span data-th-text="${street.name}">Teststreet</span>
+      <span data-th-text="${street.number}" data-any="any-data-field">123 b</span>
+    </li>
+  </ul>
 </body>
 </html>
