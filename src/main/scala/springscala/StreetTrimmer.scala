@@ -4,6 +4,9 @@ import org.springframework.stereotype.Component
 
 @Component
 class StreetTrimmer {
-  def trim(s: String): String = s.replaceAll("[_+]", " ").trim
 
+  // XXX shows java similarity
+  def trim(s: ExampleController.Street): ExampleController.Street = {
+    return new ExampleController.Street(s.name.replaceAll("[_+]+", " ").trim(), s.number);
+  }
 }
