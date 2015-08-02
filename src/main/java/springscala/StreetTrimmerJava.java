@@ -1,7 +1,6 @@
 package springscala;
 
 import org.springframework.stereotype.Component;
-import springscala.ExampleController;
 
 @Component
 public class StreetTrimmerJava {

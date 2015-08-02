@@ -12,6 +12,8 @@ class SpringStart {
 }
 object SpringStart extends App {
   // $ mvn spring-boot:run -Dserver.port=8090 # http://localhost:8090/
-  val ctx = SpringApplication.run(classOf[SpringStart])
+  val app = new SpringApplication(classOf[SpringStart])
+  app.setShowBanner(false)
+  val ctx = app.run()
   // ctx.getBeanDefinitionNames.sorted.foreach(println)
 }
