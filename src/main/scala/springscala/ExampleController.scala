@@ -2,8 +2,10 @@ package springscala
 
 import javax.inject.Inject
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.{PathVariable, RequestMapping}
+import org.thymeleaf.spring4.SpringTemplateEngine
 import springscala.ExampleController.Street
 
 import scala.beans.BeanProperty
@@ -12,15 +14,14 @@ import scala.beans.BeanProperty
 class ExampleController extends ScalaShortcuts {
 
   @Inject
-  var trimmer: StreetTrimmerJava = null
+  val trimmer: StreetTrimmerJava = null
 
   @RequestMapping(Array("/"))
   def home() = {
-
     val anyStreet = Street(" Any Street _", "32a")
     val otherStreet = Street("Other Street _", "42b")
 
-    indexView(Seq(anyStreet, otherStreet).map(street => trimmer.trim(street)))
+    indexView(Seq(anyStreet, otherStreet).map(street ⇒ trimmer.trim(street)))
   }
 
   @RequestMapping(Array("/street/{name}"))
@@ -36,7 +37,7 @@ class ExampleController extends ScalaShortcuts {
     indexView(Nil)
   }
 
-  private def indexView(streets: Seq[Street]) = view("index", Map("streets" -> streets))
+  private def indexView(streets: Seq[Street]) = view("index", Map("streets" → streets))
 
 }
 
