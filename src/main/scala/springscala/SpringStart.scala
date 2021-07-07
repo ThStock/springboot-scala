@@ -1,21 +1,26 @@
 package springscala
 
+import com.fasterxml.jackson.module.scala.DefaultScalaModule
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
+import org.springframework.context.annotation.{Bean, ComponentScan, Configuration}
+import org.thymeleaf.spring5.SpringTemplateEngine
+import org.thymeleaf.templateresolver.FileTemplateResolver
+
 import java.io.File
 import javax.annotation.PostConstruct
 import javax.inject.Inject
-
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration
-import org.springframework.context.annotation.{ComponentScan, Configuration}
-import org.thymeleaf.spring4.SpringTemplateEngine
-import org.thymeleaf.templateresolver.FileTemplateResolver
 
 @EnableAutoConfiguration
 @ComponentScan
 @Configuration
 class SpringStart {
 
+  @Bean
+  def module: DefaultScalaModule = {
+    val module = new DefaultScalaModule
+    module
+  }
 }
 
 @Configuration
@@ -44,7 +49,6 @@ class ThmeleafExtension {
 object SpringStart extends App {
   // $ mvn spring-boot:run -Dserver.port=8090 # http://localhost:8090/
   val app = new SpringApplication(classOf[SpringStart])
-  app.setShowBanner(false)
   val ctx = app.run()
   // ctx.getBeanDefinitionNames.sorted.foreach(println)
 }
